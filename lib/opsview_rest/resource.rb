@@ -50,7 +50,12 @@ class OpsviewRest
                                   raw["id"],
                                   raw)
       elsif term.kind_of? String
-        @opsview.get("#{resource_path}?s.name=#{term}", :rows => :all )[0]
+        raw = @opsview.get("#{resource_path}?s.name=#{term}", :rows => :all )[0]
+        OpsviewRest::Resource.new(opsview,
+                                  @resource_type,
+                                  raw["name"],
+                                  raw["id"],
+                                  raw)
       else
         @opsview.get(resource_path)
       end
