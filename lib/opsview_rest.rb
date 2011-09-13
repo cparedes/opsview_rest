@@ -79,7 +79,7 @@ class OpsviewRest
       raise Opsview::Exceptions::RequestFailed, "Request failed: #{response["message"]}, detail: #{response["detail"]}"
     # If we have a token, return that:
     elsif response["token"]
-      response["token"]
+      response
     # If we have a list of objects, return the list:
     elsif response["list"]
       response["list"]
