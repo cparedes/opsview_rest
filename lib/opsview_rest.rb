@@ -19,6 +19,7 @@ class OpsviewRest
   def login
     response = post('login', { 'username' => @username, 'password' => @password })
     @rest.headers[:x_opsview_token] = response['token']
+    @rest.headers[:x_opsview_username] = @username
     response
   end
 
