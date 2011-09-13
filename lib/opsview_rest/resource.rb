@@ -38,15 +38,18 @@ class OpsviewRest
       end
     end
 
-    def get(name=nil, record_id=nil)
-      if record_id && name
+    def get(name=nil)
+      # HACK: Check what type 'name' is.  If it's a string, it's probably
+      # something we need to search for.  If it's an integer, it's probably
+      # a record ID.
+      if name.kind_of? Integer
         raw = @opsview.get("#{resource_path}/#{record_id}")
         OpsviewRest::Resource.new(opsview,
                                   @resource_type,
                                   raw["name"],
                                   raw["id"],
                                   raw)
-      elsif name
+      elsif name.kind_of? String
         @opsview.get("#{resource_path}?s.name=#{name}", :rows => :all )[0]
       else
         @opsview.get(resource_path)
