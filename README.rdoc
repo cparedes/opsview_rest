@@ -1,0 +1,26 @@
+= opsview_rest
+
+A Ruby Gem that allows you to interact with an Opsview server.
+
+== Resources
+
+First iteration will focus on creating/updating/deleting resources on an
+Opsview server.  The following resources are currently supported:
+
+- Hosts
+- Contacts
+- Hostgroups
+- Host Templates
+- Notification Methods
+- Roles
+- Service Checks
+- Service Groups
+
+This gem is heavily based off of Adam Jacob's "dynect_rest" gem.
+
+This is how you would use the gem to create a resource:
+
+  require 'opsview_rest'
+  opsview = Opsview.new("username", "password", "url")
+  opsview.host.name("foobar").data({ "hosttemplates" => ['blah'] }).save
+  opsview.publish
