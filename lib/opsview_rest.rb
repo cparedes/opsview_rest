@@ -76,7 +76,7 @@ class OpsviewRest
     # We've got an error if there's "message" and "detail" fields
     # in the response
     if response["message"] and response["detail"]
-      raise Opsview::Exceptions::RequestFailed, "Request failed: #{response["message"], detail: #{response["detail"]}"
+      raise Opsview::Exceptions::RequestFailed, "Request failed: #{response["message"]}, detail: #{response["detail"]}"
     else
       if response["list"]
         response["list"]
