@@ -64,9 +64,9 @@ class OpsviewRest
       response.body
     rescue RestClient::Exception => e
       puts "I have #{e.inspect} with #{e.http_code}"
-      #if e.http_code == 307
-      #  get(e.response)
-      #end
+      if e.http_code == 307
+        get(e.response)
+      end
       e.response
     end
     parse_response(JSON.parse(response_body))
@@ -77,12 +77,14 @@ class OpsviewRest
     # in the response
     if response["message"] and response["detail"]
       raise Opsview::Exceptions::RequestFailed, "Request failed: #{response["message"]}, detail: #{response["detail"]}"
+    # If we have a token, return that:
+    elsif response["token"]
+      response["token"]
+    # If we have a list of objects, return the list:
+    elsif response["list"]
+      response["list"]
     else
-      if response["list"]
-        response["list"]
-      else
-        response["object"]
-      end
+      response["object"]
     end
   end
 end
