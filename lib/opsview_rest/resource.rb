@@ -6,10 +6,10 @@ class OpsviewRest
     # type of resource, since they all have different parameters.
     attr_accessor :opsview, :name, :resource_type, :record_id, :data
 
-    def initialize(opsview, name, resource_type, record_id=nil, data={})
+    def initialize(opsview, resource_type, name=nil, record_id=nil, data={})
       @opsview = opsview
-      @name = name
       @resource_type = resource_type
+      @name = name
       @record_id = record_id
       @data = data
     end
@@ -42,8 +42,8 @@ class OpsviewRest
       if record_id && name
         raw = @opsview.get("#{resource_path}/#{record_id}")
         OpsviewRest::Resource.new(opsview,
-                                  raw["name"],
                                   @resource_type,
+                                  raw["name"],
                                   raw["id"],
                                   raw)
       elsif name
