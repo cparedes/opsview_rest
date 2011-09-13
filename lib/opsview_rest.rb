@@ -64,9 +64,9 @@ class OpsviewRest
       response.body
     rescue RestClient::Exception => e
       puts "I have #{e.inspect} with #{e.http_code}"
-      if e.http_code == 307
-        get(e.response)
-      end
+      #if e.http_code == 307
+      #  get(e.response)
+      #end
       e.response
     end
     parse_response(JSON.parse(response_body))
