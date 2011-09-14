@@ -27,7 +27,14 @@ class OpsviewRest
     end
 
     def record_id(value=nil)
-      value ? (@record_id = value; self) : @record_id
+      if value
+        @record_id = value
+        self
+      elsif name
+        get(name)['id'].to_i
+      else
+        @record_id
+      end
     end
 
     def resource_path(full=false)
