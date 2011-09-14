@@ -6,6 +6,11 @@ class OpsviewRest
     # type of resource, since they all have different parameters.
     attr_accessor :opsview, :name, :resource_type, :record_id, :data
 
+    # Set of names that need to be remapped to `blah["name"]`
+    @@remap_names = [ "hostgroup",
+                      "monitored_by",
+                      "check_command" ]
+
     def initialize(opsview, resource_type, name=nil, record_id=nil, data={})
       @opsview = opsview
       @resource_type = resource_type
@@ -101,6 +106,8 @@ class OpsviewRest
         self
       elsif @data.has_key?(method_string)
         @data[method_string]
+      elsif @data.has_key?(method_string) && @@remap_names.include?(method_string)
+        @data[method_string]["name"]
       else
         raise NoMethodError, "undefined method `#{method_symbol.to_s}' for #{self.class.to_s}"
       end
