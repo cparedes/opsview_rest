@@ -1,7 +1,3 @@
-= opsview_rest
-
-A Ruby Gem that allows you to interact with an Opsview server.
-
 = WARNING! ACHTUNG!
 
 Don't use yet!  This gem is still in development, and I heavily recommend
@@ -9,6 +5,10 @@ against *anyone* using this gem.
 
 Also, descriptions on how the gem works in this README is bound to change
 at any time.
+
+= opsview_rest
+
+A Ruby Gem that allows you to interact with an Opsview server.
 
 == Resources
 
