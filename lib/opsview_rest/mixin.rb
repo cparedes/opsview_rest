@@ -1,5 +1,5 @@
 module OpsviewRest
-  module Util
+  module Mixin
 
     def resource_path(full=false)
       if (full == true || full == :full)
@@ -18,6 +18,10 @@ module OpsviewRest
       else
         self.opsview.post(self.resource_path, self)
       end
+    end
+
+    def to_json
+      self.options.to_json
     end
 
   end
