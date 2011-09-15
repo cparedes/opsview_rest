@@ -10,6 +10,10 @@ at any time.
 
 A Ruby Gem that allows you to interact with an Opsview server.
 
+= License
+
+Apache 2.0.
+
 == Resources
 
 First iteration will focus on creating/updating/deleting resources on an
