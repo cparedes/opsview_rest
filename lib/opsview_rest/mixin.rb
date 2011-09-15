@@ -1,11 +1,12 @@
-module OpsviewRest
+class OpsviewRest
   module Mixin
 
     def resource_path(full=false)
       if (full == true || full == :full)
-        "/rest/config/#{self.type}"
+        "/rest/config/#{self.class.name.split('::').last.downcase}"
       else
-        "config/#{self.type}"
+        "config/#{self.class.name.split('::').last.downcase}"
+      end
     end
 
     def list

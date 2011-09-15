@@ -1,3 +1,6 @@
+require 'rest-client'
+require 'json'
+
 class OpsviewRest
 
   attr_accessor :url, :username, :password, :rest
@@ -12,7 +15,7 @@ class OpsviewRest
     @url      = url
     @username = options[:username]
     @password = options[:password]
-    @rest     = RestClient::Resource.new("#{@url}", :headers => { :content_type => 'application/json' })
+    @rest     = RestClient::Resource.new("#{@url}/rest/", :headers => { :content_type => 'application/json' })
 
     login if options[:connect]
   end

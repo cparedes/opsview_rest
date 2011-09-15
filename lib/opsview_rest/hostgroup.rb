@@ -1,3 +1,5 @@
+require 'opsview_rest/mixin'
+
 class OpsviewRest
   class Hostgroup
 
@@ -7,6 +9,8 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
+        :parent => "Opsview",
+        :name => "unknown",
         :save    => true,
         :replace => false
       }.update options
