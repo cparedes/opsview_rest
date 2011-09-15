@@ -21,6 +21,13 @@ This gem is heavily based off of Adam Jacob's "dynect_rest" gem.
 This is how you would use the gem to create a resource:
 
   require 'opsview_rest'
-  opsview = Opsview.new("username", "password", "url")
-  opsview.host.name("foobar").data({ "hosttemplates" => ['blah'] }).save
-  opsview.publish
+  connection = OpsviewRest.new(:url => "https://example.com/rest", :username => "hi", :password => "hello")
+  host = connection.create(:name    => "foobar",
+                           :ip      => "192.168.1.1",
+                           :type    => :host,
+                           :replace => false)
+
+  # Let's say we want to peer into what we have so far for hosts:
+
+  connection = Opsview.new(...)
+  hosts = connection.host.list
