@@ -3,14 +3,10 @@ class OpsviewRest
 
     def resource_path(full=false)
       if (full == true || full == :full)
-        "/rest/config/#{self.class.name.split('::').last.downcase}"
+        "/rest/config/#{self.resource_type}"
       else
-        "config/#{self.class.name.split('::').last.downcase}"
+        "config/#{self.resource_type}"
       end
-    end
-
-    def list
-      self.opsview.get(resource_path)
     end
 
     def save(replace=false)

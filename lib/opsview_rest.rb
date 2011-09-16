@@ -77,6 +77,14 @@ class OpsviewRest
     end
   end
 
+  def list(options = {})
+    options = {
+      :type => "host"
+    }.update options
+
+    get("config/#{options[:type]}")
+  end
+
   def get(path_part, additional_headers = {}, &block)
     api_request { @rest[path_part].get(additional_headers, &block) }
   end

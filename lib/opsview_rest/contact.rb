@@ -1,9 +1,11 @@
 require 'opsview_rest/mixin'
 
 class OpsviewRest
-  class Attribute
+  class Contact
 
     include OpsviewRest::Mixin
+
+    attr_accessor :options, :opsview, :resource_type
 
     def initialize(opsview, options = {})
       @options = {
@@ -53,6 +55,7 @@ class OpsviewRest
       }.update options
 
       @opsview = opsview
+      @resource_type = @options[:type]
 
       @options[:all_servicegroups] = if @options[:all_servicegroups] then 1 else 0 end
       @options[:all_hostgroups] = if @options[:all_hostgroups] then 1 else 0 end

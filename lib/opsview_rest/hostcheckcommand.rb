@@ -5,7 +5,7 @@ class OpsviewRest
 
     include OpsviewRest::Mixin
 
-    attr_accessor :opsview, :options
+    attr_accessor :opsview, :options, :resource_type
 
     def initialize(opsview, options = {})
       @options = {
@@ -19,6 +19,7 @@ class OpsviewRest
       }.update options
 
       @opsview = opsview
+      @resource_type = @options[:type]
 
       @options[:plugin] = { "name" => @options[:plugin] }
       @options[:hosts] = @options[:hosts].map { |x| { "name" => x } }

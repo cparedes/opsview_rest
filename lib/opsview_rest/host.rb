@@ -5,7 +5,7 @@ class OpsviewRest
 
     include OpsviewRest::Mixin
 
-    attr_accessor :options, :opsview
+    attr_accessor :options, :opsview, :resource_type
 
     def initialize(opsview, options = {})
       # Default set of attributes to send to Opsview:
@@ -53,6 +53,7 @@ class OpsviewRest
       }.update options
 
       @opsview = opsview
+      @resource_type = @options[:type]
 
       # Add any weird exceptions here (like hostgroups having to be mapped
       # to "name" => hostgroup, etc.):
