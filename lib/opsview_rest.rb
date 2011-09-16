@@ -85,6 +85,20 @@ class OpsviewRest
     get("config/#{options[:type]}")
   end
 
+  def purge(options = {})
+    options = {
+      :type => "host",
+      :name => nil
+    }.update options
+
+    unless name
+      raise "Need to specify the name of the object."
+    else
+      id = get("config/#{options[:type]}?s.name=#{options[:name]}", :rows => :all)[0]["id"]
+      delete("config/#{options[:type]}/#{id}")
+    end
+  end
+
   def get(path_part, additional_headers = {}, &block)
     api_request { @rest[path_part].get(additional_headers, &block) }
   end
