@@ -85,6 +85,19 @@ class OpsviewRest
     get("config/#{options[:type]}")
   end
 
+  def find(options = {})
+    options = {
+      :type => "host",
+      :name => nil
+    }.update options
+
+    unless name
+      raise "Need to specify the name of the object."
+    else
+      get("config/#{options[:type]}?s.name=#{options[:name]}", :rows => :all)
+    end
+  end
+
   def purge(options = {})
     options = {
       :type => "host",
@@ -94,7 +107,7 @@ class OpsviewRest
     unless name
       raise "Need to specify the name of the object."
     else
-      id = get("config/#{options[:type]}?s.name=#{options[:name]}", :rows => :all)[0]["id"]
+      id = find(:type => options[:type], :name => options[:name])[0]["id"]
       delete("config/#{options[:type]}/#{id}")
     end
   end
