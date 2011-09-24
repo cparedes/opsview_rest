@@ -85,6 +85,10 @@ class OpsviewRest
     get("config/#{options[:type]}")
   end
 
+  def reload
+    get("reload")
+  end
+
   def find(options = {})
     options = {
       :type => "host",
