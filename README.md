@@ -1,4 +1,5 @@
 # opsview_rest
+[![Build Status](https://travis-ci.org/cparedes/opsview_rest?branch=master)](https://travis-ci.org/cparedes/opsview_rest)
 
 A Ruby Gem that allows you to interact with an Opsview server.
 
