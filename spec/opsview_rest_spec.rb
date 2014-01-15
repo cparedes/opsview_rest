@@ -51,8 +51,17 @@ describe OpsviewRest do
       list_response_hosttemplate = opsview_rest.list(:type => 'hosttemplate')
       list_response_hosttemplate.to_s.should include "Opsview Housekeeping Cronjob Monitor", "Microsoft Active Directory", "Apache current requests"
     end
+  end
 
+  describe '#reload' do
+    it 'returns current reload status' do
+      pending 'Gives no response'
+      stub_request(:get, "https://example.com/rest/reload").
+         with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby', 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi'}).
+         to_return(:status => 200, :body => fixture('reload'))
 
+      opsview_rest.reload
+    end
   end
 
 end
