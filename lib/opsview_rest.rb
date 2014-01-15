@@ -85,8 +85,12 @@ class OpsviewRest
     get("config/#{options[:type]}")
   end
 
-  def reload
+  def get_reload
     get("reload")
+  end
+  
+  def post_reload
+    post("reload")
   end
 
   def find(options = {})
