@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rake", "~> 10.1.1"
   gem.add_development_dependency "rspec", "~> 2.14.1"
   gem.add_development_dependency "yard", "~> 0.8.7.3"
+  gem.add_development_dependency "webmock", "~> 1.11.0"
   gem.add_dependency 'json', '~> 1.6.1'
   gem.add_dependency 'rest-client', '~> 1.6.6'
   gem.version = '0.3.0'
