@@ -35,7 +35,7 @@ describe OpsviewRest do
 
   describe '#list' do
     it 'returns list of hosts by default' do
-      stub_request(:get, "https://example.com/rest/config/host").
+      stub_request(:get, "https://example.com/rest/config/host?rows=all").
          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi'}).
          to_return(:status => 200, :body => fixture('list'))
 
@@ -44,7 +44,7 @@ describe OpsviewRest do
     end
 
     it 'returns a full list for a given value' do
-      stub_request(:get, "https://example.com/rest/config/hosttemplate").
+      stub_request(:get, "https://example.com/rest/config/hosttemplate?rows=all").
          with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby', 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi'}).
          to_return(:status => 200, :body => fixture('list_hosttemplate'))
 
