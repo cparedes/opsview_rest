@@ -64,4 +64,16 @@ describe OpsviewRest do
     end
   end
 
+  describe '#find' do
+    it 'returns an error if name is nil' do
+      expect {opsview_rest.find}.to raise_error ArgumentError, "Need to specify the name of the object."
+    end
+  end
+
+  describe '#purge' do
+    it 'returns an error if name is nil' do
+      expect {opsview_rest.purge}.to raise_error ArgumentError, "Need to specify the name of the object."
+    end
+  end
+
 end

@@ -98,7 +98,7 @@ class OpsviewRest
     }.update options
 
     if options[:name].nil?
-      raise "Need to specify the name of the object."
+      raise ArgumentError, "Need to specify the name of the object."
     else
       get("config/#{options[:type]}?s.name=#{options[:name]}?rows=#{options[:rows]}")
     end
@@ -111,7 +111,7 @@ class OpsviewRest
     }.update options
 
     if options[:name].nil?
-      raise "Need to specify the name of the object."
+      raise ArgumentError, "Need to specify the name of the object."
     else
       id = find(:type => options[:type], :name => options[:name])[0]["id"]
       delete("config/#{options[:type]}/#{id}")
