@@ -79,10 +79,11 @@ class OpsviewRest
 
   def list(options = {})
     options = {
-      :type => "host"
+      :type => "host",
+      :rows => "all"
     }.update options
 
-    get("config/#{options[:type]}")
+    get("config/#{options[:type]}?rows=#{options[:rows]}")
   end
 
   def reload
@@ -92,13 +93,14 @@ class OpsviewRest
   def find(options = {})
     options = {
       :type => "host",
+      :rows => "all",
       :name => nil
     }.update options
 
-    unless name
-      raise "Need to specify the name of the object."
+    if options[:name].nil?
+      raise ArgumentError, "Need to specify the name of the object."
     else
-      get("config/#{options[:type]}?s.name=#{options[:name]}", :rows => :all)
+      get("config/#{options[:type]}?s.name=#{options[:name]}?rows=#{options[:rows]}")
     end
   end
 
@@ -108,8 +110,8 @@ class OpsviewRest
       :name => nil
     }.update options
 
-    unless name
-      raise "Need to specify the name of the object."
+    if options[:name].nil?
+      raise ArgumentError, "Need to specify the name of the object."
     else
       id = find(:type => options[:type], :name => options[:name])[0]["id"]
       delete("config/#{options[:type]}/#{id}")
