@@ -100,7 +100,7 @@ class OpsviewRest
     if options[:name].nil?
       raise ArgumentError, "Need to specify the name of the object."
     else
-      get("config/#{options[:type]}?s.name=#{options[:name]}?rows=#{options[:rows]}")
+      get("config/#{options[:type]}?s.name=#{options[:name]}&rows=#{options[:rows]}")
     end
   end
 
