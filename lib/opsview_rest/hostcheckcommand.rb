@@ -22,7 +22,6 @@ class OpsviewRest
       @resource_type = @options[:type]
 
       @options[:plugin] = { "name" => @options[:plugin] }
-      @options[:hosts] = @options[:hosts].map { |x| { "name" => x } }
       @options[:uncommitted] = if @options[:uncommitted] then 1 else 0 end
 
       save(@options[:replace]) if @options[:save]

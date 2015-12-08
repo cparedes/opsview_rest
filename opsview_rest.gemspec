@@ -24,5 +24,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'json'
   gem.add_dependency 'rest-client', '~> 1.6.6'
 
-  gem.version = '0.4.2'
+  gem.version = '0.4.3'
 end
