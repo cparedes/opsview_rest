@@ -96,15 +96,19 @@ class OpsviewRest
 
   def find(options = {})
     options = {
-      :type => "host",
+      :type => nil,
       :rows => "all",
-      :name => nil
+      :searchattribute => nil
     }.update options
 
+    if options[:searchattribute].nil?
+      options[:searchattribute] = "name"
+    end
+    
     if options[:name].nil?
       raise ArgumentError, "Need to specify the name of the object."
     else
-      get("config/#{options[:type]}?s.name=#{options[:name]}&rows=#{options[:rows]}")
+      get("config/#{options[:type]}?s.#{options[:searchattribute]}=#{options[:name]}&rows=#{options[:rows]}")
     end
   end
 
@@ -143,7 +147,7 @@ class OpsviewRest
       response = block.call
       response.body
     rescue RestClient::Exception => e
-      puts "I have #{e.inspect} with #{e.http_code}"
+      raise "I have #{e.inspect} with #{e.http_code}"
       if e.http_code == 307
         get(e.response)
       end
