@@ -13,7 +13,7 @@ class OpsviewRest
         :master => false,
         :active => true,
         :command => "notify_by_email",
-        :contact_variables => "EMAIL"
+        :contact_variables => "EMAIL",
         :save    => true,
         :replace => false
       }.update options
