@@ -59,9 +59,9 @@ class OpsviewRest
 
       @options[:all_servicegroups] = if @options[:all_servicegroups] then 1 else 0 end
       @options[:all_hostgroups] = if @options[:all_hostgroups] then 1 else 0 end
-      @options[:servicegroups] = @options[:servicegroups].map { |x| { "name" => x } }
-      @options[:keywords] = @options[:keywords].map { |x| { "name" => x } }
-      @options[:hostgroups] = @options[:hostgroups].map { |x| { "name" => x } }
+      @options[:servicegroups] = @options[:servicegroups].map { |x| { "name" => x } } unless @options[:servicegroups].nil?
+      @options[:keywords] = @options[:keywords].map { |x| { "name" => x } } unless @options[:keywords].nil?
+      @options[:hostgroups] = @options[:hostgroups].map { |x| { "name" => x } } unless @options[:hostgroups].nil?
       @options[:role] = { "name" => @options[:role] }
 
       save(@options[:replace]) if @options[:save]

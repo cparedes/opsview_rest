@@ -29,10 +29,10 @@ class OpsviewRest
       @opsview = opsview
       @resource_type = @options[:type]
 
-      @option[:servicecheck_notification_periods] = @option[:servicecheck_notification_periods].map { |x| { "name" => x } }
-      @option[:servicecheck_check_periods] = @option[:servicecheck_check_periods].map { |x| { "name" => x } }
-      @option[:host_check_periods] = @option[:host_check_periods].map { |x| { "name" => x } }
-      @option[:host_notification_periods] = @option[:host_notification_periods].map { |x| { "name" => x } }
+      @options[:servicecheck_notification_periods] = @options[:servicecheck_notification_periods].map { |x| { "name" => x } } unless @options[:servicecheck_notification_periods].nil?
+      @options[:servicecheck_check_periods] = @options[:servicecheck_check_periods].map { |x| { "name" => x } } unless  @options[:servicecheck_check_periods].nil?
+      @options[:host_check_periods] = @options[:host_check_periods].map { |x| { "name" => x } } unless @options[:host_check_periods].nil?
+      @options[:host_notification_periods] = @options[:host_notification_periods].map { |x| { "name" => x } } unless @options[:host_notification_periods].nil?
 
       save(@options[:replace]) if @options[:save]
     end

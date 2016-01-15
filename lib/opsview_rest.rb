@@ -57,8 +57,8 @@ class OpsviewRest
     when :monitoring_server
       require 'opsview_rest/monitoring_server'
       OpsviewRest::MonitoringServer.new(self, options)
-    when :notification_method
-      require 'opsview_rest/notification_method'
+    when :notificationmethod
+      require 'opsview_rest/notificationmethod'
       OpsviewRest::NotificationMethod.new(self, options)
     when :role
       require 'opsview_rest/role'
