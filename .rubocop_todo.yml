@@ -11,11 +11,6 @@ Lint/UnreachableCode:
   Exclude:
     - 'lib/opsview_rest.rb'
 
-# # Offense count: 1
-# Lint/UselessAssignment:
-#   Exclude:
-#     - 'spec/opsview_rest_spec.rb'
-
 # Offense count: 7
 Metrics/AbcSize:
   Max: 31
@@ -29,13 +24,6 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 14
 
-# Offense count: 39
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 272
-
-# Offense count: 15
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
   Max: 57
