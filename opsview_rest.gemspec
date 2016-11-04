@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name = "opsview_rest"
-  gem.summary = %Q{Opsview REST API library}
-  gem.description = %Q{Update configuration on Opsview server via REST API}
+  gem.summary = "Opsview REST API library"
+  gem.description = "Update configuration on Opsview server via REST API"
   gem.email = "christian.paredes@seattlebiomed.org"
   gem.homepage = "http://github.com/cparedes/opsview_rest"
   gem.authors = ["Christian Paredes"]

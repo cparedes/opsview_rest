@@ -104,7 +104,7 @@ class OpsviewRest
     if options[:searchattribute].nil?
       options[:searchattribute] = "name"
     end
-    
+
     if options[:name].nil?
       raise ArgumentError, "Need to specify the name of the object."
     else

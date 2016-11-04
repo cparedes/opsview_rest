@@ -63,7 +63,7 @@ class OpsviewRest
       @options[:use_rancid] = if @options[:use_rancid] then 1 else 0 end
       @options[:use_nmis] = if @options[:use_nmis] then 1 else 0 end
       @options[:uncommitted] = if @options[:uncommitted] then 1 else 0 end
-      @options[:check_period] = { "name" => @options[:check_period] }      
+      @options[:check_period] = { "name" => @options[:check_period] }
       @options[:hostgroup] = { "name" => @options[:hostgroup] }
       @options[:notification_period] = { "name" => @options[:notification_period] }
       @options[:monitored_by] = { "name" => @options[:monitored_by] }
