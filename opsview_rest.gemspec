@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "yard", "~> 0.8.7.3"
   gem.add_development_dependency "webmock", "~> 1.11.0"
 
-  gem.add_dependency 'json', '~> 1.7.7'
+  gem.add_dependency 'json', '~> 2.0.2'
   gem.add_dependency 'rest-client', '~> 1.6.6'
 
   gem.version = '0.4.4'
