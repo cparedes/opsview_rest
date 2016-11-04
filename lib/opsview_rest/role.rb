@@ -19,7 +19,7 @@ class OpsviewRest
         :access_keywords => [],
         :hostgroups => [],
         :monitoringservers => [],
-        :accesses => [ 'NOTIFYSOME', 'PASSWORDSAVE', 'VIEWALL' ],
+        :accesses => %w(NOTIFYSOME PASSWORDSAVE VIEWALL),
         :save    => true,
         :replace => false
       }.update options

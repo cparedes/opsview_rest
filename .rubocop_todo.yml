@@ -267,20 +267,3 @@ Style/SpaceInsideBrackets:
 # SupportedStyles: space, no_space
 Style/SpaceInsideHashLiteralBraces:
   Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: final_newline, final_blank_line
-Style/TrailingBlankLines:
-  Exclude:
-    - 'Gemfile'
-    - 'spec/spec_helper.rb'
-
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: brackets
