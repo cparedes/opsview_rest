@@ -53,7 +53,6 @@ describe OpsviewRest do
 
   describe '#reload' do
     it 'returns current reload status' do
-      pending 'Gives no response'
       stub_request(:get, "https://example.com/rest/reload").
         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'Host'=>'example.com', 'User-Agent'=> /rest-client\/2\.0\.0.*/, 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi'}).
         to_return(:status => 200, :body => fixture('reload'))
