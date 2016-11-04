@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe OpsviewRest do
-
-  let(:opsview_rest) { OpsviewRest.new('https://example.com', :username => 'hi', :password => 'hello') }
+  let(:opsview_rest) { OpsviewRest.new('https://example.com', username: 'hi', password: 'hello') }
 
   before :each do
-    stub_request(:post, 'https://example.com/rest/login').
-    with(:body => '{"username":"hi","password":"hello"}',
-         :headers => { 'Content-Length' => '36', 'Content-Type' => 'application/json' }).
-    to_return(:status => 200, :body => fixture('login_key'))
+    stub_request(:post, 'https://example.com/rest/login')
+      .with(body: '{"username":"hi","password":"hello"}',
+            headers: { 'Content-Length' => '36', 'Content-Type' => 'application/json' })
+      .to_return(status: 200, body: fixture('login_key'))
   end
 
   describe '#new' do
@@ -27,7 +26,7 @@ describe OpsviewRest do
     end
 
     it 'stores login token from login command' do
-      login_response = opsview_rest.login
+      opsview_rest.login
       opsview_rest.rest.headers[:x_opsview_username].should eql 'hi'
       opsview_rest.rest.headers[:x_opsview_token].should eql '88dffa0974c364e56431697f257564fb1524b029'
     end
@@ -35,15 +34,15 @@ describe OpsviewRest do
 
   describe '#list' do
     it 'returns list of hosts by default' do
-      stub_request(:get, 'https://example.com/rest/config/host?rows=all').
-         with(:headers => { 'Accept' => '*/*',
-                            'Accept-Encoding' => 'gzip, deflate',
-                            'Content-Type' => 'application/json',
-                            'Host' => 'example.com',
-                            'User-Agent' => /rest-client\/2\.0\.0.*/,
-                            'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
-                            'X-Opsview-Username' => 'hi' }).
-         to_return(:status => 200, :body => fixture('list'), :headers => {})
+      stub_request(:get, 'https://example.com/rest/config/host?rows=all')
+        .with(headers: { 'Accept' => '*/*',
+                         'Accept-Encoding' => 'gzip, deflate',
+                         'Content-Type' => 'application/json',
+                         'Host' => 'example.com',
+                         'User-Agent' => %r{rest-client\/2\.0\.0.*},
+                         'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
+                         'X-Opsview-Username' => 'hi' })
+        .to_return(status: 200, body: fixture('list'), headers: {})
       list_response = opsview_rest.list
       list_response.to_s.should include 'Network - Base',
                                         'Monitoring Servers',
@@ -52,16 +51,16 @@ describe OpsviewRest do
     end
 
     it 'returns a full list for a given value' do
-      stub_request(:get, 'https://example.com/rest/config/hosttemplate?rows=all').
-        with(:headers => { 'Accept' => '*/*',
-                           'Accept-Encoding' => 'gzip, deflate',
-                           'Content-Type' => 'application/json',
-                           'Host' => 'example.com',
-                           'User-Agent' => /rest-client\/2\.0\.0.*/,
-                           'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
-                           'X-Opsview-Username' => 'hi' }).
-        to_return(:status => 200, :body => fixture('list_hosttemplate'))
-      list_response_hosttemplate = opsview_rest.list(:type => 'hosttemplate')
+      stub_request(:get, 'https://example.com/rest/config/hosttemplate?rows=all')
+        .with(headers: { 'Accept' => '*/*',
+                         'Accept-Encoding' => 'gzip, deflate',
+                         'Content-Type' => 'application/json',
+                         'Host' => 'example.com',
+                         'User-Agent' => %r{rest-client\/2\.0\.0.*},
+                         'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
+                         'X-Opsview-Username' => 'hi' })
+        .to_return(status: 200, body: fixture('list_hosttemplate'))
+      list_response_hosttemplate = opsview_rest.list(type: 'hosttemplate')
       list_response_hosttemplate.to_s.should include 'Opsview Housekeeping Cronjob Monitor',
                                                      'Microsoft Active Directory',
                                                      'Apache current requests'
@@ -70,14 +69,14 @@ describe OpsviewRest do
 
   describe '#reload' do
     it 'returns current reload status' do
-      stub_request(:get, 'https://example.com/rest/reload').
-        with(:headers => { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip, deflate',
-                           'Content-Type' => 'application/json',
-                           'Host' => 'example.com',
-                           'User-Agent' => /rest-client\/2\.0\.0.*/,
-                           'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
-                           'X-Opsview-Username' => 'hi' }).
-        to_return(:status => 200, :body => fixture('reload'))
+      stub_request(:get, 'https://example.com/rest/reload')
+        .with(headers: { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip, deflate',
+                         'Content-Type' => 'application/json',
+                         'Host' => 'example.com',
+                         'User-Agent' => %r{rest-client\/2\.0\.0.*},
+                         'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
+                         'X-Opsview-Username' => 'hi' })
+        .to_return(status: 200, body: fixture('reload'))
       opsview_rest.reload
     end
   end
@@ -93,5 +92,4 @@ describe OpsviewRest do
       expect { opsview_rest.purge }.to raise_error ArgumentError, 'Need to specify the name of the object.'
     end
   end
-
 end

@@ -2,20 +2,19 @@ require 'rest-client'
 require 'json'
 
 class OpsviewRest
-
   attr_accessor :url, :username, :password, :rest
 
   def initialize(url, options = {})
     options = {
-      :username => 'api',
-      :password => 'changeme',
-      :connect  => true
+      username: 'api',
+      password: 'changeme',
+      connect: true
     }.update options
 
     @url      = url
     @username = options[:username]
     @password = options[:password]
-    @rest     = RestClient::Resource.new("#{@url}/rest/", :headers => { :content_type => 'application/json' })
+    @rest     = RestClient::Resource.new("#{@url}/rest/", headers: { content_type: 'application/json' })
 
     login if options[:connect]
   end
@@ -79,8 +78,8 @@ class OpsviewRest
 
   def list(options = {})
     options = {
-      :type => 'host',
-      :rows => 'all'
+      type: 'host',
+      rows: 'all'
     }.update options
 
     get("config/#{options[:type]}?rows=#{options[:rows]}")
@@ -96,14 +95,12 @@ class OpsviewRest
 
   def find(options = {})
     options = {
-      :type => nil,
-      :rows => 'all',
-      :searchattribute => nil
+      type: nil,
+      rows: 'all',
+      searchattribute: nil
     }.update options
 
-    if options[:searchattribute].nil?
-      options[:searchattribute] = 'name'
-    end
+    options[:searchattribute] = 'name' if options[:searchattribute].nil?
 
     if options[:name].nil?
       raise ArgumentError, 'Need to specify the name of the object.'
@@ -114,14 +111,14 @@ class OpsviewRest
 
   def purge(options = {})
     options = {
-      :type => 'host',
-      :name => nil
+      type: 'host',
+      name: nil
     }.update options
 
     if options[:name].nil?
       raise ArgumentError, 'Need to specify the name of the object.'
     else
-      id = find(:type => options[:type], :name => options[:name])[0]['id']
+      id = find(type: options[:type], name: options[:name])[0]['id']
       delete("config/#{options[:type]}/#{id}")
     end
   end
@@ -148,9 +145,7 @@ class OpsviewRest
       response.body
     rescue RestClient::Exception => e
       raise "I have #{e.inspect} with #{e.http_code}"
-      if e.http_code == 307
-        get(e.response)
-      end
+      get(e.response) if e.http_code == 307
       e.response
     end
     parse_response(JSON.parse(response_body))
