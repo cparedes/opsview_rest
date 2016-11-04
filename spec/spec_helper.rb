@@ -9,7 +9,7 @@ RSpec.configure do |config|
 end
 
 def project_path
-  File.expand_path("../..", __FILE__)
+  File.expand_path('../..', __FILE__)
 end
 
 def fixture(fixture_name)
