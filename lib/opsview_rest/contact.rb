@@ -9,7 +9,7 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
-        :name    => 'foobar',
+        :name => 'foobar',
         :fullname => '',
         :description => '',
         :encrypted_password => '$apr1$HTQogYE7$09TNcZWa/WzoBXdUF6Iyr1',

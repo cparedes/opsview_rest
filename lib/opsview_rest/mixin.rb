@@ -1,15 +1,15 @@
 class OpsviewRest
   module Mixin
 
-    def resource_path(full=false)
-      if (full == true || full == :full)
+    def resource_path(full = false)
+      if full == true || full == :full
         "/rest/config/#{self.resource_type}"
       else
         "config/#{self.resource_type}"
       end
     end
 
-    def save(replace=false)
+    def save(replace = false)
       if replace == true || replace == :replace
         self.opsview.put(self.resource_path, self)
       else

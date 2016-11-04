@@ -14,7 +14,7 @@ class OpsviewRest
         :keywords => [],
         :attribute => nil,
         :servicegroup => 'Unknown',
-        :dependencies => [ 'Opsview Agent' ],
+        :dependencies => ['Opsview Agent'],
         :check_period => '24x7',
         :check_interval => '5',
         :check_attempts => '3',

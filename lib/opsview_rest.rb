@@ -21,7 +21,7 @@ class OpsviewRest
   end
 
   def login
-    response = post('login', { 'username' => @username, 'password' => @password })
+    response = post('login', 'username' => @username, 'password' => @password)
     @rest.headers[:x_opsview_token]    = response['token']
     @rest.headers[:x_opsview_username] = @username
     response
@@ -142,9 +142,9 @@ class OpsviewRest
     api_request { @rest[path_part].put(payload.to_json, additional_headers, &block) }
   end
 
-  def api_request(&block)
+  def api_request
     response_body = begin
-      response = block.call
+      response = yield
       response.body
     rescue RestClient::Exception => e
       raise "I have #{e.inspect} with #{e.http_code}"
@@ -159,7 +159,7 @@ class OpsviewRest
   def parse_response(response)
     # We've got an error if there's "message" and "detail" fields
     # in the response
-    if response['message'] and response['detail']
+    if response['message'] && response['detail']
       raise Opsview::Exceptions::RequestFailed, "Request failed: #{response['message']}, detail: #{response['detail']}"
     # If we have a token, return that:
     elsif response['token']

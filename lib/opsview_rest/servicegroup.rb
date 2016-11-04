@@ -10,7 +10,7 @@ class OpsviewRest
     def initialize(opsview, options = {})
       @options = {
         :name => 'Unknown',
-        :servicechecks => [ '' ],
+        :servicechecks => [''],
         :save    => true,
         :replace => false
       }.update options

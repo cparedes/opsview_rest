@@ -12,7 +12,7 @@ class OpsviewRest
         :name => 'Unknown',
         :all_hosts => false,
         :hosts => [],
-        :roles => [ 'View some, change none' ],
+        :roles => ['View some, change none'],
         :all_servicechecks => false,
         :servicechecks => [],
         :description => '',

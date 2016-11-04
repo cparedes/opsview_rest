@@ -7,7 +7,7 @@ describe OpsviewRest do
   before :each do
     stub_request(:post, 'https://example.com/rest/login').
     with(:body => '{"username":"hi","password":"hello"}',
-      :headers => { 'Content-Length'=>'36', 'Content-Type'=>'application/json' }).
+         :headers => { 'Content-Length' => '36', 'Content-Type' => 'application/json' }).
     to_return(:status => 200, :body => fixture('login_key'))
   end
 
@@ -36,25 +36,47 @@ describe OpsviewRest do
   describe '#list' do
     it 'returns list of hosts by default' do
       stub_request(:get, 'https://example.com/rest/config/host?rows=all').
-         with(:headers => { 'Accept'=>'*/*', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'Host'=>'example.com', 'User-Agent'=> /rest-client\/2\.0\.0.*/, 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi' }).
+         with(:headers => { 'Accept' => '*/*',
+                            'Accept-Encoding' => 'gzip, deflate',
+                            'Content-Type' => 'application/json',
+                            'Host' => 'example.com',
+                            'User-Agent' => /rest-client\/2\.0\.0.*/,
+                            'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
+                            'X-Opsview-Username' => 'hi' }).
          to_return(:status => 200, :body => fixture('list'), :headers => {})
       list_response = opsview_rest.list
-      list_response.to_s.should include 'Network - Base', 'Monitoring Servers', '/images/logos/opsview_small.png', 'Application - Opsview Master'
+      list_response.to_s.should include 'Network - Base',
+                                        'Monitoring Servers',
+                                        '/images/logos/opsview_small.png',
+                                        'Application - Opsview Master'
     end
 
     it 'returns a full list for a given value' do
       stub_request(:get, 'https://example.com/rest/config/hosttemplate?rows=all').
-        with(:headers => { 'Accept'=>'*/*', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'Host'=>'example.com', 'User-Agent'=> /rest-client\/2\.0\.0.*/, 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi' }).
+        with(:headers => { 'Accept' => '*/*',
+                           'Accept-Encoding' => 'gzip, deflate',
+                           'Content-Type' => 'application/json',
+                           'Host' => 'example.com',
+                           'User-Agent' => /rest-client\/2\.0\.0.*/,
+                           'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
+                           'X-Opsview-Username' => 'hi' }).
         to_return(:status => 200, :body => fixture('list_hosttemplate'))
       list_response_hosttemplate = opsview_rest.list(:type => 'hosttemplate')
-      list_response_hosttemplate.to_s.should include 'Opsview Housekeeping Cronjob Monitor', 'Microsoft Active Directory', 'Apache current requests'
+      list_response_hosttemplate.to_s.should include 'Opsview Housekeeping Cronjob Monitor',
+                                                     'Microsoft Active Directory',
+                                                     'Apache current requests'
     end
   end
 
   describe '#reload' do
     it 'returns current reload status' do
       stub_request(:get, 'https://example.com/rest/reload').
-        with(:headers => { 'Accept'=>'*/*', 'Accept-Encoding'=>'gzip, deflate', 'Content-Type'=>'application/json', 'Host'=>'example.com', 'User-Agent'=> /rest-client\/2\.0\.0.*/, 'X-Opsview-Token'=>'88dffa0974c364e56431697f257564fb1524b029', 'X-Opsview-Username'=>'hi' }).
+        with(:headers => { 'Accept' => '*/*', 'Accept-Encoding' => 'gzip, deflate',
+                           'Content-Type' => 'application/json',
+                           'Host' => 'example.com',
+                           'User-Agent' => /rest-client\/2\.0\.0.*/,
+                           'X-Opsview-Token' => '88dffa0974c364e56431697f257564fb1524b029',
+                           'X-Opsview-Username' => 'hi' }).
         to_return(:status => 200, :body => fixture('reload'))
       opsview_rest.reload
     end
@@ -62,13 +84,13 @@ describe OpsviewRest do
 
   describe '#find' do
     it 'returns an error if name is nil' do
-      expect {opsview_rest.find}.to raise_error ArgumentError, 'Need to specify the name of the object.'
+      expect { opsview_rest.find }.to raise_error ArgumentError, 'Need to specify the name of the object.'
     end
   end
 
   describe '#purge' do
     it 'returns an error if name is nil' do
-      expect {opsview_rest.purge}.to raise_error ArgumentError, 'Need to specify the name of the object.'
+      expect { opsview_rest.purge }.to raise_error ArgumentError, 'Need to specify the name of the object.'
     end
   end
 
