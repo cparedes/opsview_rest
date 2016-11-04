@@ -14,40 +14,40 @@ class OpsviewRest
         :snmpv3_privprotocol    => nil,
         :hosttemplates => [],
         :keywords => [],
-        :check_period => "24x7",
+        :check_period => '24x7',
         :hostattributes => [],
-        :notification_period => "24x7",
-        :name => "unknown",
+        :notification_period => '24x7',
+        :name => 'unknown',
         :rancid_vendor => nil,
-        :snmp_community => "public",
-        :hostgroup => "Unknown",
+        :snmp_community => 'public',
+        :hostgroup => 'Unknown',
         :enable_snmp => false,
-        :monitored_by => "Master Monitoring Server",
-        :alias => "Managed Host",
+        :monitored_by => 'Master Monitoring Server',
+        :alias => 'Managed Host',
         :uncommitted => false,
         :parents => [],
-        :icon => { "name" => "LOGO - Opsview" },
+        :icon => { 'name' => 'LOGO - Opsview' },
         :retry_check_interval => 1,
-        :ip => "localhost",
+        :ip => 'localhost',
         :use_mrtg => false,
         :servicechecks => [],
         :use_rancid => false,
-        :nmis_node_type => "router",
-        :snmp_version => "2c",
-        :snmp_authpassword => "",
+        :nmis_node_type => 'router',
+        :snmp_version => '2c',
+        :snmp_authpassword => '',
         :use_nmis => false,
-        :rancid_connection_type => "ssh",
+        :rancid_connection_type => 'ssh',
         :snmpv3_authprotocol => nil,
         :rancid_username => nil,
         :rancid_password => nil,
-        :check_command => "ping",
+        :check_command => 'ping',
         :check_attempts => 2,
         :check_interval => 0,
         :notification_interval => 60,
         :snmp_port => 161,
-        :snmpv3_username => "",
-        :snmpv3_privpassword => "",
-        :other_addresses => "",
+        :snmpv3_username => '',
+        :snmpv3_privpassword => '',
+        :other_addresses => '',
         :save    => true,
         :replace => false
       }.update options
@@ -63,12 +63,12 @@ class OpsviewRest
       @options[:use_rancid] = if @options[:use_rancid] then 1 else 0 end
       @options[:use_nmis] = if @options[:use_nmis] then 1 else 0 end
       @options[:uncommitted] = if @options[:uncommitted] then 1 else 0 end
-      @options[:check_period] = { "name" => @options[:check_period] }
-      @options[:hostgroup] = { "name" => @options[:hostgroup] }
-      @options[:notification_period] = { "name" => @options[:notification_period] }
-      @options[:monitored_by] = { "name" => @options[:monitored_by] }
-      @options[:servicechecks] = @options[:servicechecks].map { |x| { "name" => x } }
-      @options[:check_command] = { "name" => @options[:check_command] }
+      @options[:check_period] = { 'name' => @options[:check_period] }
+      @options[:hostgroup] = { 'name' => @options[:hostgroup] }
+      @options[:notification_period] = { 'name' => @options[:notification_period] }
+      @options[:monitored_by] = { 'name' => @options[:monitored_by] }
+      @options[:servicechecks] = @options[:servicechecks].map { |x| { 'name' => x } }
+      @options[:check_command] = { 'name' => @options[:check_command] }
 
       save(@options[:replace]) if @options[:save]
     end

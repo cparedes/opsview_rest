@@ -9,14 +9,14 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
-        :name => "Unknown",
+        :name => 'Unknown',
         :all_hosts => false,
         :hosts => [],
-        :roles => [ "View some, change none" ],
+        :roles => [ 'View some, change none' ],
         :all_servicechecks => false,
         :servicechecks => [],
-        :description => "",
-        :style => "group_by_host",
+        :description => '',
+        :style => 'group_by_host',
         :enabled => true,
         :save    => true,
         :replace => false
@@ -28,9 +28,9 @@ class OpsviewRest
       @options[:all_hosts] = if @options[:all_hosts] then 1 else 0 end
       @options[:all_servicechecks] = if @options[:all_servicechecks] then 1 else 0 end
       @options[:enabled] = if @options[:enabled] then 1 else 0 end
-      @options[:servicechecks] = @options[:servicechecks].map { |x| { "name" => x } }
-      @options[:hosts] = @options[:hosts].map { |x| { "name" => x } }
-      @options[:roles] = @options[:roles].map { |x| { "name" => x } }
+      @options[:servicechecks] = @options[:servicechecks].map { |x| { 'name' => x } }
+      @options[:hosts] = @options[:hosts].map { |x| { 'name' => x } }
+      @options[:roles] = @options[:roles].map { |x| { 'name' => x } }
 
       save(@options[:replace]) if @options[:save]
     end

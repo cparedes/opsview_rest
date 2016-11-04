@@ -9,11 +9,11 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
-        :name => "Unknown",
+        :name => 'Unknown',
         :master => false,
         :active => true,
-        :command => "notify_by_email",
-        :contact_variables => "EMAIL",
+        :command => 'notify_by_email',
+        :contact_variables => 'EMAIL',
         :save    => true,
         :replace => false
       }.update options

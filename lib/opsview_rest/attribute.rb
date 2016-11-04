@@ -9,12 +9,12 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
-        :name => "PROCESSES",
-        :arg1 => "",
-        :arg2 => "",
-        :arg3 => "",
-        :arg4 => "",
-        :value => "",
+        :name => 'PROCESSES',
+        :arg1 => '',
+        :arg2 => '',
+        :arg3 => '',
+        :arg4 => '',
+        :value => '',
         :servicechecks => [],
         :save    => true,
         :replace => false
@@ -23,7 +23,7 @@ class OpsviewRest
       @opsview = opsview
       @resource_type = @options[:type]
 
-      @options[:servicechecks] = @options[:servicechecks].map { |x| { "name" => x } }
+      @options[:servicechecks] = @options[:servicechecks].map { |x| { 'name' => x } }
 
       save(@options[:replace]) if @options[:save]
     end

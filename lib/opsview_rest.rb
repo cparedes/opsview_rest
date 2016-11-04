@@ -7,8 +7,8 @@ class OpsviewRest
 
   def initialize(url, options = {})
     options = {
-      :username => "api",
-      :password => "changeme",
+      :username => 'api',
+      :password => 'changeme',
       :connect  => true
     }.update options
 
@@ -73,40 +73,40 @@ class OpsviewRest
       require 'opsview_rest/timeperiod'
       OpsviewRest::Timeperiod.new(self, options)
     else
-      raise "Type not implemented yet."
+      raise 'Type not implemented yet.'
     end
   end
 
   def list(options = {})
     options = {
-      :type => "host",
-      :rows => "all"
+      :type => 'host',
+      :rows => 'all'
     }.update options
 
     get("config/#{options[:type]}?rows=#{options[:rows]}")
   end
 
   def reload
-    get("reload")
+    get('reload')
   end
 
   def initiate_reload
-    post("reload", {})
+    post('reload', {})
   end
 
   def find(options = {})
     options = {
       :type => nil,
-      :rows => "all",
+      :rows => 'all',
       :searchattribute => nil
     }.update options
 
     if options[:searchattribute].nil?
-      options[:searchattribute] = "name"
+      options[:searchattribute] = 'name'
     end
 
     if options[:name].nil?
-      raise ArgumentError, "Need to specify the name of the object."
+      raise ArgumentError, 'Need to specify the name of the object.'
     else
       get("config/#{options[:type]}?s.#{options[:searchattribute]}=#{options[:name]}&rows=#{options[:rows]}")
     end
@@ -114,14 +114,14 @@ class OpsviewRest
 
   def purge(options = {})
     options = {
-      :type => "host",
+      :type => 'host',
       :name => nil
     }.update options
 
     if options[:name].nil?
-      raise ArgumentError, "Need to specify the name of the object."
+      raise ArgumentError, 'Need to specify the name of the object.'
     else
-      id = find(:type => options[:type], :name => options[:name])[0]["id"]
+      id = find(:type => options[:type], :name => options[:name])[0]['id']
       delete("config/#{options[:type]}/#{id}")
     end
   end
@@ -159,16 +159,16 @@ class OpsviewRest
   def parse_response(response)
     # We've got an error if there's "message" and "detail" fields
     # in the response
-    if response["message"] and response["detail"]
+    if response['message'] and response['detail']
       raise Opsview::Exceptions::RequestFailed, "Request failed: #{response["message"]}, detail: #{response["detail"]}"
     # If we have a token, return that:
-    elsif response["token"]
+    elsif response['token']
       response
     # If we have a list of objects, return the list:
-    elsif response["list"]
-      response["list"]
+    elsif response['list']
+      response['list']
     else
-      response["object"]
+      response['object']
     end
   end
 end

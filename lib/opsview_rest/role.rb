@@ -9,8 +9,8 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
-        :name => "Unknown",
-        :description => "",
+        :name => 'Unknown',
+        :description => '',
         :all_hostgroups => true,
         :all_servicegroups => true,
         :all_keywords => false,
@@ -19,7 +19,7 @@ class OpsviewRest
         :access_keywords => [],
         :hostgroups => [],
         :monitoringservers => [],
-        :accesses => [ "NOTIFYSOME", "PASSWORDSAVE", "VIEWALL" ],
+        :accesses => [ 'NOTIFYSOME', 'PASSWORDSAVE', 'VIEWALL' ],
         :save    => true,
         :replace => false
       }.update options
@@ -27,9 +27,9 @@ class OpsviewRest
       @opsview = opsview
       @resource_type = @options[:type]
 
-      @options[:hostgroups] = @options[:hostgroups].map { |x| { "name" => x } }
-      @options[:monitoringservers] = @options[:monitoringservers].map { |x| { "name" => x } }
-      @options[:accesses] = @options[:accesses].map { |x| { "name" => x } }
+      @options[:hostgroups] = @options[:hostgroups].map { |x| { 'name' => x } }
+      @options[:monitoringservers] = @options[:monitoringservers].map { |x| { 'name' => x } }
+      @options[:accesses] = @options[:accesses].map { |x| { 'name' => x } }
       @options[:all_hostgroups] = if @options[:all_hostgroups] then 1 else 0 end
       @options[:all_servicegroups] = if @options[:all_servicegroups] then 1 else 0 end
       @options[:all_keywords] = if @options[:all_keywords] then 1 else 0 end

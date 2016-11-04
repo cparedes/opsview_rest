@@ -9,7 +9,7 @@ class OpsviewRest
 
     def initialize(opsview, options = {})
       @options = {
-        :name => "Slave",
+        :name => 'Slave',
         :roles => [],
         :activated => true,
         :monitors => [],
@@ -21,9 +21,9 @@ class OpsviewRest
       @opsview = opsview
       @resource_type = @options[:type]
 
-      @option[:roles] = @option[:roles].map { |x| { "name" => x } }
-      @option[:monitors] = @option[:monitors].map { |x| { "name" => x } }
-      @option[:nodes] = @option[:nodes].map { |x| { "host" => { "name" => x } } }
+      @option[:roles] = @option[:roles].map { |x| { 'name' => x } }
+      @option[:monitors] = @option[:monitors].map { |x| { 'name' => x } }
+      @option[:nodes] = @option[:nodes].map { |x| { 'host' => { 'name' => x } } }
       @options[:activated] = if @options[:activated] then 1 else 0 end
 
       save(@options[:replace]) if @options[:save]
