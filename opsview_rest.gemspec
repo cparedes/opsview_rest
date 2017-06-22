@@ -6,10 +6,10 @@ Gem::Specification.new do |gem|
   gem.name = 'opsview_rest'
   gem.summary = %(Opsview REST API library)
   gem.description = %(Update configuration on Opsview server via REST API)
-  gem.email = 'christian.paredes@seattlebiomed.org'
+  gem.email = 'cp@redbluemagenta.com'
   gem.homepage = 'http://github.com/cparedes/opsview_rest'
   gem.authors = ['Christian Paredes']
-  gem.license       = 'Apache'
+  gem.license       = 'Apache-2.0'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
